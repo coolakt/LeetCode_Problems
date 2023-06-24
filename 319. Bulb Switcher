@@ -1,0 +1,16 @@
+class Solution {
+private:
+    // vector<int> divisors;
+public:
+    bool willStayOn(int num) {
+        auto sqroot = std::sqrt(num);
+        return sqroot == (int)sqroot;
+    }
+    int bulbSwitch(int n) {
+        int lamps_on = static_cast<int>(n>0);
+        for (int i=2; i<=n; i++) {
+            lamps_on += static_cast<int>(willStayOn(i));
+        }
+        return lamps_on;
+    }
+};
