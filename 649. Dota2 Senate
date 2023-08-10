@@ -1,0 +1,26 @@
+class Solution {
+public:
+    string predictPartyVictory(string senate) {
+        queue<int> rep,dem;
+        for(int i=0; i<senate.size(); i++){
+            if(senate[i] == 'R')
+            rep.push(i);
+            else
+            dem.push(i);
+        }
+        while(!rep.empty() && !dem.empty()){
+            int re=rep.front();
+            rep.pop();
+            int de=dem.front();
+            dem.pop();
+            if(re < de){
+                rep.push(re +senate.size());
+            }
+            else{
+                dem.push(de +senate.size());
+            }
+        }
+        return (rep.size() > dem.size())? "Radiant":"Dire";
+        
+    }
+};
