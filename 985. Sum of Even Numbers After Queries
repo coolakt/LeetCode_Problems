@@ -1,0 +1,37 @@
+class Solution {
+public:
+    vector<int> sumEvenAfterQueries(vector<int>& nums, vector<vector<int>>& queries) {
+        vector<int> ans;
+        int sum = 0;
+
+        // Calculate the initial sum of even numbers in the array
+        for (auto x : nums) {
+            if (x % 2 == 0) {
+                sum += x;
+            }
+        }
+
+        // Process queries and update the sum accordingly
+        for (auto x : queries) {
+            int index = x[1];
+            int val = x[0];
+            
+            // Update sum before making changes
+            if (nums[index] % 2 == 0) {
+                sum -= nums[index];
+            }
+            
+            // Update the array element
+            nums[index] += val;
+
+            // Update sum after making changes
+            if (nums[index] % 2 == 0) {
+                sum += nums[index];
+            }
+            
+            ans.push_back(sum);
+        }
+        
+        return ans;
+    }
+};
